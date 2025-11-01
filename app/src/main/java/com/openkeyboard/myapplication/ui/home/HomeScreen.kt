@@ -48,6 +48,7 @@ fun HomeScreen(modifier: Modifier){
         Forecast(painterResource(R.drawable.ic_windy), "25°", "Saturday, 2 Nov"),
         Forecast(painterResource(R.drawable.ic_sunny), "20°", "Monday, 4 Nov")
     )
+    //
 
     Box(Modifier.fillMaxSize().paint(
 
