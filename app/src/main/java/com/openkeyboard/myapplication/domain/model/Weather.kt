@@ -1,7 +1,12 @@
 package com.openkeyboard.myapplication.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity("weather_table")
 data class Weather(
     // Location Details
+    @PrimaryKey
     val city: String,
     val country: String,
 
