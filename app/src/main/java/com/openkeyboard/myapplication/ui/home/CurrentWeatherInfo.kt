@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.openkeyboard.myapplication.presentation.WeatherUiState
+import com.openkeyboard.myapplication.utils.Converters
 
 @Composable
 fun CurrentWeatherInfo(
@@ -34,7 +35,7 @@ fun CurrentWeatherInfo(
                     color = Color(0xFF333333)
                 )
                 Text(
-                    text = "${uiState.weather.temperature}°C",
+                    text = Converters.kelvinToCelsius(uiState.weather.temperature).toString().plus("°C"),
                     fontSize = 96.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF333333)
