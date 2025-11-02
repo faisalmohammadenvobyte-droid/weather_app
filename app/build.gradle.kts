@@ -75,4 +75,11 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
     implementation("androidx.compose.ui:ui-text-google-fonts:1.9.4")
+
+    // Check for the latest version, but this is a common one
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+// OPTIONAL, but HIGHLY recommended for coroutines:
+// This adds the .await() extension to make our code much cleaner
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 }
