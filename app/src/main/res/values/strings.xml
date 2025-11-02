@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="onboard_heading">Never get caught\nin the rain again</string>
+    <string name="onboard_sub_heading">Stay ahead of the weather with our\naccurate forecasts</string>
 </resources>
