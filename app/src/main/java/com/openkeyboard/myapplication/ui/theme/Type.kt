@@ -2,6 +2,7 @@ package com.openkeyboard.myapplication.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.googlefonts.Font
@@ -9,30 +10,42 @@ import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 import com.openkeyboard.myapplication.R
 
-val provider = GoogleFont.Provider(
-    providerAuthority = "com.google.android.gms.fonts",
-    providerPackage = "com.google.android.gms",
-    certificates = R.array.com_google_android_gms_fonts_certs
+val CustomFont = FontFamily(
+    Font(R.font.rubik_regular, FontWeight.Normal),
+    Font(R.font.rubik_medium, FontWeight.Medium),
+    Font(R.font.rubik_light, FontWeight.Light),
+    Font(R.font.rubik_bold, FontWeight.Bold),
+    Font(R.font.rubik_semibold, FontWeight.SemiBold  )
 )
 
-val RubikFontFamily = FontFamily(
-    Font(GoogleFont("Rubik"), provider)
-)
-
+// Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = RubikFontFamily,
+        fontFamily = CustomFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
     ),
     titleLarge = TextStyle(
-        fontFamily = RubikFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 22.sp
+        fontFamily = CustomFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = CustomFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = RubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
-        fontSize = 11.sp
+        fontSize = 11.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
     )
 )
