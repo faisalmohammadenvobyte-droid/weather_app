@@ -297,13 +297,3 @@ fun SettingsRow(
         }
     }
 }
-
-@Preview(showSystemUi = true)
-@Composable
-fun showSettingScreen(){
-    SettingsScreen(
-        navController = rememberNavController(),
-        weatherViewModel = TODO(),
-        onBackClicked = TODO()
-    )
-}
