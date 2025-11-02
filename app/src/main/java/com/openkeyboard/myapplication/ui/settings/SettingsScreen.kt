@@ -1,4 +1,4 @@
-package com.openkeyboard.myapplication
+package com.openkeyboard.myapplication.ui.settings
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -11,21 +11,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,18 +34,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.openkeyboard.myapplication.R
+import com.openkeyboard.myapplication.presentation.WeatherViewModel
+import com.openkeyboard.myapplication.utils.Constants.API_KEY
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
+    weatherViewModel: WeatherViewModel = hiltViewModel(),
     onBackClicked: () -> Unit
 ){
+    val uiState by weatherViewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        weatherViewModel.fetchWeather(lat = 44.34, lon = 10.99, apiKey = API_KEY)
+    }
+
     Column() {
         CenterAlignedTopAppBar(
             title = {
@@ -77,6 +85,13 @@ fun SettingsScreen(
 
         AppSettingsListWithSwitches()
 
+        val uiState by weatherViewModel.uiState.collectAsState()
+
+        when {
+            uiState.isLoading -> CircularProgressIndicator()
+            uiState.weather != null -> Text("Temp: ${uiState.weather?.temperature}")
+            uiState.error != null -> Text("Error: ${uiState.error}")
+        }
     }
 
 }
