@@ -75,7 +75,6 @@ fun SevenDayCalendarForWeather() {
     val today = remember { Calendar.getInstance() }
     var selectedDate by remember { mutableStateOf(today.time) }
 
-    // Create a list of dates: today + next 6 days
     val dates = remember {
         (0 until 7).map { offset ->
             (today.clone() as Calendar).apply { add(Calendar.DAY_OF_YEAR, offset) }.time
