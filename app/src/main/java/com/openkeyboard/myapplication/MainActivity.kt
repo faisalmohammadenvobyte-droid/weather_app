@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
 
-                    AppNavigation(context = this)
+                    AppNavigation()
 
             }
         }

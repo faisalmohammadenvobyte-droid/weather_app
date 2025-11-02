@@ -67,8 +67,5 @@ fun HomeScreen(modifier: Modifier, navController: NavController){
         WeatherStats(stats = stats)
         Spacer(Modifier.height(16.dp))
         ForecastSection(forecasts)
-
-
-
     }
 }
