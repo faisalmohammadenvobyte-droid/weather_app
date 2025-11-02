@@ -35,21 +35,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.openkeyboard.myapplication.R
+import com.openkeyboard.myapplication.presentation.WeatherViewModel
+import com.openkeyboard.myapplication.utils.Constants.API_KEY
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     navController: NavController
+    weatherViewModel: WeatherViewModel = hiltViewModel(),
+    onBackClicked: () -> Unit
 ){
+    val uiState by weatherViewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        weatherViewModel.fetchWeather(lat = 44.34, lon = 10.99, apiKey = API_KEY)
+    }
+
     Column() {
         CenterAlignedTopAppBar(
             title = {
@@ -80,6 +90,13 @@ fun SettingsScreen(
 
         AppSettingsListWithSwitches()
 
+        val uiState by weatherViewModel.uiState.collectAsState()
+
+        when {
+            uiState.isLoading -> CircularProgressIndicator()
+            uiState.weather != null -> Text("Temp: ${uiState.weather?.temperature}")
+            uiState.error != null -> Text("Error: ${uiState.error}")
+        }
     }
 
 }
