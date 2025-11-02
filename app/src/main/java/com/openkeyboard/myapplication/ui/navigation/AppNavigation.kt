@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.openkeyboard.myapplication.SettingsScreen
 import com.openkeyboard.myapplication.prefs.PrefsHelper
 import com.openkeyboard.myapplication.ui.DetailsScreen
 import com.openkeyboard.myapplication.ui.OnboardingScreen
@@ -45,5 +46,6 @@ fun AppNavigation() {
             HomeScreen(modifier = Modifier.padding(0.dp), navController = navController)
         }
         composable(Routes.DetailsScreen){ DetailsScreen(modifier = Modifier.padding(0.dp),navController = navController) }
+        composable(Routes.SettingScreen){ SettingsScreen(navController = navController) }
     }
 }

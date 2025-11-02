@@ -18,10 +18,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
-fun HomeHeader(modifier: Modifier) {
+fun HomeHeader(modifier: Modifier,navController: NavController) {
 
 
 
@@ -51,7 +52,7 @@ fun HomeHeader(modifier: Modifier) {
             ),
             elevation = CardDefaults.cardElevation(0.dp)
         ) {
-            IconButton(onClick = { /* TODO */ }) {
+            IconButton(onClick = { navController.navigate("setting_screen") }) {
                 Icon(
                     imageVector = Icons.Default.Menu,
                     contentDescription = "Menu",

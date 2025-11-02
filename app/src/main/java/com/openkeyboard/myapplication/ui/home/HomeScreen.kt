@@ -61,7 +61,7 @@ fun HomeScreen(modifier: Modifier, navController: NavController){
         .padding(16.dp)
 
     ) {
-        HomeHeader(modifier)
+        HomeHeader(modifier,navController)
         CurrentWeatherInfo(navController)
         Spacer(Modifier.height(16.dp))
         WeatherStats(stats = stats)

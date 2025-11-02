@@ -40,12 +40,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    onBackClicked: () -> Unit
+    navController: NavController
 ){
     Column() {
         CenterAlignedTopAppBar(
@@ -53,7 +56,7 @@ fun SettingsScreen(
                 Text(text = "Settings", color = Color(0xFF31507F))
             },
             navigationIcon = {
-                IconButton(onClick = onBackClicked) {
+                IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
                         painter = painterResource(R.drawable.ic_arrow_back),
                         contentDescription = "Go back",
@@ -273,4 +276,10 @@ fun SettingsRow(
             }
         }
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun showSettingScreen(){
+    SettingsScreen( navController = rememberNavController())
 }
