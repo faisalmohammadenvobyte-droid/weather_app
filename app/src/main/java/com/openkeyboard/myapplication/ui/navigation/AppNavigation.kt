@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,7 +15,8 @@ import com.openkeyboard.myapplication.ui.OnboardingScreen
 import com.openkeyboard.myapplication.ui.home.HomeScreen
 
 @Composable
-fun AppNavigation(context: Context) {
+fun AppNavigation() {
+    val context = LocalContext.current
     val navController = rememberNavController()
     val startDestination = if (PrefsHelper.isOnBoardingComplete(context)) {
         Routes.Home
@@ -24,7 +26,6 @@ fun AppNavigation(context: Context) {
 
     NavHost(
         navController = navController,
-
         startDestination = startDestination
     ) {
 
@@ -43,6 +44,6 @@ fun AppNavigation(context: Context) {
         composable(Routes.Home) {
             HomeScreen(modifier = Modifier.padding(0.dp), navController = navController)
         }
-        composable(Routes.DetailsScreen){ DetailsScreen(modifier = Modifier.padding(0.dp),navController =navController) }
+        composable(Routes.DetailsScreen){ DetailsScreen(modifier = Modifier.padding(0.dp),navController = navController) }
     }
 }

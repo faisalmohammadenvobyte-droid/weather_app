@@ -115,7 +115,7 @@ fun OnboardingScreen(
         // Button fixed at bottom
         Button(
             onClick = {
-                navController.navigate("home")
+                onFinish()
             },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
