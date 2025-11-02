@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.openkeyboard.myapplication.R
 
 // --- Mock Data Classes ---
@@ -34,7 +35,7 @@ data class Forecast(
 )
 
 @Composable
-fun HomeScreen(modifier: Modifier){
+fun HomeScreen(modifier: Modifier, navController: NavController){
 
     // Mock data for the UI
     val stats = listOf(
