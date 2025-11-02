@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.openkeyboard.myapplication.ui.DetailsScreen
 import com.openkeyboard.myapplication.ui.home.HomeScreen
 import com.openkeyboard.myapplication.ui.theme.MyApplicationTheme
 
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
-                    HomeScreen(Modifier.padding(innerPadding))
+                    DetailsScreen(Modifier.padding(innerPadding))
 
                 }
             }
