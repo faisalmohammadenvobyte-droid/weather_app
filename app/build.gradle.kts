@@ -57,4 +57,11 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Check for the latest version, but this is a common one
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+// OPTIONAL, but HIGHLY recommended for coroutines:
+// This adds the .await() extension to make our code much cleaner
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 }

@@ -1,4 +1,4 @@
-package com.openkeyboard.myapplication.utils.location
+package com.openkeyboard.myapplication.utils.location.permission
 
 import android.Manifest
 import android.content.Intent
