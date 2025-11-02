@@ -30,7 +30,10 @@ import androidx.navigation.NavController
 import com.openkeyboard.myapplication.R
 
 @Composable
-fun OnboardingScreen(navController: NavController) {
+fun OnboardingScreen(
+    navController: NavController,
+    onFinish: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -112,7 +115,7 @@ fun OnboardingScreen(navController: NavController) {
         // Button fixed at bottom
         Button(
             onClick = {
-            navController.navigate("home")
+                navController.navigate("home")
             },
             modifier = Modifier
                 .align(Alignment.BottomCenter)

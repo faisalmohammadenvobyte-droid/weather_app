@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -47,7 +48,7 @@ data class CalendarDay(
 )
 
 @Composable
-fun DetailsScreen(modifier: Modifier = Modifier) {
+fun DetailsScreen(modifier: Modifier = Modifier,navController: NavController) {
     Column(
         modifier = modifier
             .fillMaxSize()
