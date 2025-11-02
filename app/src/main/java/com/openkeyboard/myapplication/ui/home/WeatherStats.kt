@@ -19,9 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.openkeyboard.myapplication.presentation.WeatherUiState
 
 @Composable
-fun WeatherStats(stats: List<WeatherStat>) {
+fun WeatherStats(
+    uiState: WeatherUiState,
+    stats: List<WeatherStat>
+) {
     // This is the inner glass card for the stats
     Card(
         shape = RoundedCornerShape(24.dp),

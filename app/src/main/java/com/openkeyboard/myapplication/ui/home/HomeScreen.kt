@@ -55,18 +55,17 @@ fun HomeScreen(
         homeViewModel.fetchWeather(lat = 23.60, lon = 90.35, apiKey = API_KEY)
     }
 
-    when {
-        uiState.isLoading -> CircularProgressIndicator()
-        uiState.weather != null -> Text("Temp: ${uiState.weather?.temperature}")
-        uiState.error != null -> Text("Error: ${uiState.error}")
+    val stats: List<WeatherStat> = when {
+        uiState.isLoading -> emptyList()
+        uiState.weather != null -> listOf(
+            WeatherStat(Icons.Default.CheckCircle, "UV Index", "7", "High"),
+            WeatherStat(Icons.Default.CheckCircle, "Humidity", uiState.weather?.humidity.toString().plus("%"), ""),
+            WeatherStat(Icons.Outlined.CheckCircle, "Precipitation", "4mm", "")
+        )
+        uiState.error != null -> emptyList()
+        else -> emptyList()
     }
 
-    // Mock data for the UI
-    val stats = listOf(
-        WeatherStat(Icons.Default.CheckCircle, "UV Index", "7", "High"),
-        WeatherStat(Icons.Default.CheckCircle, "Humidity", "61%", ""),
-        WeatherStat(Icons.Outlined.CheckCircle, "Precipitation", "4mm", "")
-    )
     val forecasts = listOf(
         Forecast(painterResource(R.drawable.ic_sunny), "22°", "Friday, 1 Nov"),
         Forecast(painterResource(R.drawable.ic_rain), "19°", "Sunday, 3 Nov"),
@@ -88,7 +87,7 @@ fun HomeScreen(
         HomeHeader(modifier,navController)
         CurrentWeatherInfo(navController, uiState)
         Spacer(Modifier.height(16.dp))
-        WeatherStats(stats = stats)
+        WeatherStats(uiState = uiState, stats = stats)
         Spacer(Modifier.height(16.dp))
         ForecastSection(forecasts)
     }
