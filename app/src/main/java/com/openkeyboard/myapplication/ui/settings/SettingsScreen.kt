@@ -11,20 +11,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -46,22 +42,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.openkeyboard.myapplication.R
-import com.openkeyboard.myapplication.presentation.WeatherViewModel
+import com.openkeyboard.myapplication.presentation.HomeViewModel
 import com.openkeyboard.myapplication.utils.Constants.API_KEY
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     navController: NavController,
-    weatherViewModel: WeatherViewModel = hiltViewModel(),
+    homeViewModel: HomeViewModel = hiltViewModel(),
     onBackClicked: () -> Unit
 ){
-    val uiState by weatherViewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        weatherViewModel.fetchWeather(lat = 44.34, lon = 10.99, apiKey = API_KEY)
-    }
 
     Column() {
         CenterAlignedTopAppBar(
@@ -92,14 +82,6 @@ fun SettingsScreen(
         }
 
         AppSettingsListWithSwitches()
-
-        val uiState by weatherViewModel.uiState.collectAsState()
-
-        when {
-            uiState.isLoading -> CircularProgressIndicator()
-            uiState.weather != null -> Text("Temp: ${uiState.weather?.temperature}")
-            uiState.error != null -> Text("Error: ${uiState.error}")
-        }
     }
 
 }
@@ -303,7 +285,7 @@ fun SettingsRow(
 fun showSettingScreen(){
     SettingsScreen(
         navController = rememberNavController(),
-        weatherViewModel = TODO(),
+        homeViewModel = TODO(),
         onBackClicked = TODO()
     )
 }

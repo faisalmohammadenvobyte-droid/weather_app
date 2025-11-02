@@ -9,7 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.painter.Painter
@@ -17,8 +22,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.openkeyboard.myapplication.R
+import com.openkeyboard.myapplication.presentation.HomeViewModel
+import com.openkeyboard.myapplication.utils.Constants.API_KEY
 
 // --- Mock Data Classes ---
 data class WeatherStat(
@@ -35,7 +43,23 @@ data class Forecast(
 )
 
 @Composable
-fun HomeScreen(modifier: Modifier, navController: NavController){
+fun HomeScreen(
+    modifier: Modifier,
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    navController: NavController
+){
+
+    val uiState by homeViewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        homeViewModel.fetchWeather(lat = 23.60, lon = 90.35, apiKey = API_KEY)
+    }
+
+    when {
+        uiState.isLoading -> CircularProgressIndicator()
+        uiState.weather != null -> Text("Temp: ${uiState.weather?.temperature}")
+        uiState.error != null -> Text("Error: ${uiState.error}")
+    }
 
     // Mock data for the UI
     val stats = listOf(
@@ -62,7 +86,7 @@ fun HomeScreen(modifier: Modifier, navController: NavController){
 
     ) {
         HomeHeader(modifier,navController)
-        CurrentWeatherInfo(navController)
+        CurrentWeatherInfo(navController, uiState)
         Spacer(Modifier.height(16.dp))
         WeatherStats(stats = stats)
         Spacer(Modifier.height(16.dp))

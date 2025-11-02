@@ -18,7 +18,7 @@ data class WeatherUiState(
 )
 
 @HiltViewModel
-class WeatherViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val getWeatherDataUseCase: GetWeatherDataUseCase
 ): ViewModel() {
 
