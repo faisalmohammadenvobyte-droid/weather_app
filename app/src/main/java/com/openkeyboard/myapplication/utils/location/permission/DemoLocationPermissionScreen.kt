@@ -34,6 +34,15 @@ fun LocationPermissionScreen() {
     val context = LocalContext.current
     val activity = context as? ComponentActivity
     // This state will hold whether the permission is granted
+
+
+    val locationServiceFlow = remember(context) {
+        context.observeLocationServiceState()
+    }
+    val isLocationServiceOn by locationServiceFlow.collectAsState(
+        initial = isLocationServiceEnabled(context)
+    )
+
     var hasLocationPermission by remember {
         mutableStateOf(
             ContextCompat.checkSelfPermission(
@@ -42,17 +51,10 @@ fun LocationPermissionScreen() {
             ) == PackageManager.PERMISSION_GRANTED
         )
     }
+
     // State to control the rationale dialog
     var showRationaleDialog by remember { mutableStateOf(false) }
 
-
-    val locationServiceFlow = remember(context) {
-        context.observeLocationServiceState()
-    }
-
-    val isLocationServiceOn by locationServiceFlow.collectAsState(
-        initial = isLocationServiceEnabled(context)
-    )
 
     // This is the launcher that will request the permission
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -69,9 +71,6 @@ fun LocationPermissionScreen() {
             }
         }
     )
-
-
-
 
     // --- The Rationale Dialog ---
     if (showRationaleDialog) {
@@ -112,6 +111,7 @@ fun LocationPermissionScreen() {
     }
 
 
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -119,7 +119,7 @@ fun LocationPermissionScreen() {
     ) {
         when {
 
-            ! hasLocationPermission ->{
+            !hasLocationPermission ->{
                 Text("We need location permission for this feature.")
                 Button(onClick = {
                     // This is the core logic

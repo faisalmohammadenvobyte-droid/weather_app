@@ -18,12 +18,6 @@ class MainActivity : ComponentActivity() {
 
 
 
-            //SettingsScreen {  }
-
-                //NetworkTestScreen()
-
-               // LocationPermissionScreen()
-
 
             }
         }
