@@ -36,11 +36,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
-                    HomeScreen(Modifier.padding(innerPadding))
-
-                }
+                SettingsScreen {  }
             }
         }
     }
