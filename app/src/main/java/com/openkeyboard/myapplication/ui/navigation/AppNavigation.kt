@@ -46,6 +46,9 @@ fun AppNavigation() {
             HomeScreen(modifier = Modifier.padding(0.dp), navController = navController)
         }
         composable(Routes.DetailsScreen){ DetailsScreen(modifier = Modifier.padding(0.dp),navController = navController) }
-        composable(Routes.SettingScreen){ SettingsScreen(navController = navController) }
+        composable(Routes.SettingScreen){ SettingsScreen(
+            navController = navController,
+            onBackClicked = {}
+        ) }
     }
 }

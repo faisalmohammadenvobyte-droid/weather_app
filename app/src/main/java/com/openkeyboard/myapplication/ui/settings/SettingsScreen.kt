@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -26,6 +27,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,7 +53,7 @@ import com.openkeyboard.myapplication.utils.Constants.API_KEY
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    navController: NavController
+    navController: NavController,
     weatherViewModel: WeatherViewModel = hiltViewModel(),
     onBackClicked: () -> Unit
 ){
@@ -298,5 +301,9 @@ fun SettingsRow(
 @Preview(showSystemUi = true)
 @Composable
 fun showSettingScreen(){
-    SettingsScreen( navController = rememberNavController())
+    SettingsScreen(
+        navController = rememberNavController(),
+        weatherViewModel = TODO(),
+        onBackClicked = TODO()
+    )
 }

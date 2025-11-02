@@ -1,6 +1,7 @@
 package com.openkeyboard.myapplication.di
 
 import com.openkeyboard.myapplication.data.remote.ApiService
+import com.openkeyboard.myapplication.utils.Constants.API_URL
 import com.openkeyboard.myapplication.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -31,7 +32,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(API_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
