@@ -35,7 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -48,7 +47,7 @@ data class CalendarDay(
 )
 
 @Composable
-fun DetailsScreen(modifier: Modifier = Modifier,navController: NavController) {
+fun DetailsScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -77,7 +76,7 @@ fun SevenDayCalendarForWeather() {
     var selectedDate by remember { mutableStateOf(today.time) }
 
     val dates = remember {
-        (0 until 7).map { offset ->
+        (0 until 30).map { offset ->
             (today.clone() as Calendar).apply { add(Calendar.DAY_OF_YEAR, offset) }.time
         }
     }
