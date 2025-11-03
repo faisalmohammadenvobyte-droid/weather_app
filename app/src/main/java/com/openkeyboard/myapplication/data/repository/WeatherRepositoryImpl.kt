@@ -2,6 +2,7 @@ package com.openkeyboard.myapplication.data.repository
 
 import com.openkeyboard.myapplication.data.mapper.toDomain
 import com.openkeyboard.myapplication.data.remote.ApiService
+import com.openkeyboard.myapplication.domain.model.Forecast
 import com.openkeyboard.myapplication.domain.model.Weather
 import com.openkeyboard.myapplication.domain.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
@@ -12,5 +13,9 @@ class WeatherRepositoryImpl(
 ): WeatherRepository {
     override suspend fun getWeatherData(lat: Double, lon: Double, apiKey: String): Weather = withContext(Dispatchers.IO) {
         api.getWeatherData(lat, lon, apiKey).toDomain()
+    }
+
+    override suspend fun getForecast(city: String, apiKey: String): Forecast {
+        TODO("Not yet implemented")
     }
 }

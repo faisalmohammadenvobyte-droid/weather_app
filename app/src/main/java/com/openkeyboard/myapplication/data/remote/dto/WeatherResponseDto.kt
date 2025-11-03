@@ -1,6 +1,6 @@
 package com.openkeyboard.myapplication.data.remote.dto
 
-data class WeatherDto(
+data class WeatherResponseDto(
     val base: String,
     val clouds: Clouds,
     val cod: Int,
